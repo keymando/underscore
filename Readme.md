@@ -1,4 +1,4 @@
 Underscore
 ----------
 
-Keymando plugin that replaces spaces with underscores as you type.  Enabled with '<Cmd-u>' and disabled with '<Escape>'.
+Keymando plugin that replaces spaces with underscores as you type. Toggle underscore replacement by pressing Cmd-U.
