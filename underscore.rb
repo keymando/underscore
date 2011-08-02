@@ -1,30 +1,20 @@
 class Underscore < Plugin
+  class << self
+    attr_accessor :enabled
 
-  @state = :disabled
+    def toggle
+      @enabled = ! @enabled
+    end
 
-  class << self; attr_accessor :state; end
-
-  def self.enable
-    @state = :enabled
-  end
-
-  def self.disable
-    @state = :disabled
-  end
-
-  def self.enabled?
-    lambda{Underscore.state == :enabled}
-  end
-
-  def self.disabled?
-    lambda{Underscore.state == :disabled}
+    def enabled?
+      lambda{Underscore.enabled == true}
+    end
   end
 
   def after
     map ' ', '_', :if => Underscore.enabled?
 
-    map("<Cmd-u>", :if => Underscore.disabled?) { Underscore.enable }
-    map("<Escape>", :if => Underscore.enabled?) { Underscore.disable }
+    map "<Cmd-u>", lambda{ Underscore.toggle }
   end
 
 end
